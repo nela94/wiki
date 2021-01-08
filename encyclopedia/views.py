@@ -11,7 +11,11 @@ def index(request):
 
 def get_title(request, title):
     data = util.get_entry(title)
-    return render(request, "encyclopedia/entry.html",{
-        "body_info": data,
-        "title": title
+
+    if data == None:
+        return render(request, "encyclopedia/error.html")
+    else:
+        return render(request, "encyclopedia/entry.html",{
+            "body_info": data,
+            "title": title
     })
